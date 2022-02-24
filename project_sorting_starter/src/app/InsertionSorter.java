@@ -12,6 +12,14 @@ public class InsertionSorter<T> extends AbstractSorter<T> {
 	@Override
 	public SwapList<T> sort() {
 		// TODO sort
-		return null;
+			int len = list.size();
+			for (int i = 0; i < len - 2; i++){
+				int comp = list.compare(i, i+1, comparator);
+				if(comp > 0){
+					list.swap(i, i+1);
+				}
+			}
+		return list;
+
 	}
 }
