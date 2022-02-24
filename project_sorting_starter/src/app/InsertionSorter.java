@@ -15,9 +15,9 @@ public class InsertionSorter<T> extends AbstractSorter<T> {
 				return list;
 
 			int len = list.size();
-			for (int i = 0; i < len - 1; i++){
-				for(int j = i; j > 0 && list.compare(i-1, i, comparator) > 0; j--){
-					list.swap(i-1, i);
+			for (int i = 1; i < len; i++){
+				for(int j = i; j > 0 && list.compare(j, j-1, comparator) < 0; j--){
+					list.swap(j-1, j);
 				}
 			}
 		return list;

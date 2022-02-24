@@ -40,15 +40,12 @@ public class ArrayBasedSwapList<T> implements SwapList<T> {
 	// Returns true iff the list is sorted in ascending order according to the given comparator.
 	@Override
 	public boolean isSorted(Comparator<T> comparator) {
-		for(int i = 0; i < arrayList.size() - 2; i++){
-			int j = comparator.compare(arrayList.get(i), arrayList.get(i+1));
-			this.comparisons++;
-			if(j <= 0){
-				continue;
-			}
-			if(j > 0){
+		for(int i = 1; i < arrayList.size(); i++){
+			int j = comparator.compare(arrayList.get(i-1), arrayList.get(i));
+			//comparisons++;
+			if(j > 0)
 				return false;
-			}
+
 		}
 		return true;
 	}
@@ -70,7 +67,15 @@ public class ArrayBasedSwapList<T> implements SwapList<T> {
 	@Override
 	public int scoreList(Comparator<T> comparator) {
 		// TODO scoreList
-		return -1;
+		int comp = 0;
+		int sortComp = 0;
+		for(int i = 1; i < arrayList.size(); i++){
+			int j = comparator.compare(arrayList.get(i-1), arrayList.get(i));
+			comp++;
+			if(j < 0)
+				sortComp++;
+		}
+		return ((sortComp*100)/comp);
 	}
 	
 	@Override

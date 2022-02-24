@@ -11,6 +11,9 @@ public class QuickSorter<T> extends AbstractSorter<T> {
 
 	@Override
 	public SwapList<T> sort() {
+
+		if (list.isSorted(comparator))
+			return list;
 		quickSort(0, list.size() - 1);
 		
 		return list;
