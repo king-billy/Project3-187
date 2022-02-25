@@ -316,7 +316,7 @@ public class ProjectTests {
 		SwapList<Integer> result = firstAsLastSorterQuick.sort();
 		// note: 14 is the number the solution
 		// returns; yours should not be much different
-		assertTrue("quick sort: test first as last # of comparisons", result.getComparisons() <= 14);
+		assertTrue("quick sort: test first as last # of comparisons"+result.getComparisons(), result.getComparisons() <= 14);
 	}
 
 	@Test

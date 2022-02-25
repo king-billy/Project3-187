@@ -20,23 +20,27 @@ public class QuickSorter<T> extends AbstractSorter<T> {
 		//this method returns the list as an output
 		return list;
 	}
-	
-	//This function takes the last element of the list as pivot
-	//It places the pivot element in its right position and then puts
-	//all smaller elements to its left and all greater elements to its right
+
 	public int partition(int low, int high){
-		//index of smaller element
-		int i = low - 1;
-		for(int j = low; j <= high - 1;j++){
-			//if current element is smaller than the pivot
-			if(list.compare(j, high, comparator) < 0){
-				//increments the index of smaller element
-				i++;
-				list.swap(i, j);
+		//index of the pivot point
+		int piv = (high + low) / 2;
+		//this is the last index of the sorted sub-list
+		int partInd = low - 1;
+		for (int i = low; i <= high; i++){
+			if(i!=piv){
+				if(list.compare(i, piv, comparator) < 0){
+					partInd++;
+					if(i!=partInd){
+						list.swap(i, partInd);
+						if(partInd==piv){
+							piv = i;
+						}
+					}
+				}
 			}
 		}
-		list.swap(i+1, high);
-		return (i+1);
+		list.swap(piv, partInd+1);
+		return partInd + 1;
 	}
 
 	//this method implements the quick sort function
